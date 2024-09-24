@@ -1,14 +1,19 @@
-import React  from 'react'
-import Navbar from './components/Navbar/Navbar'
-import BooksMenu from './components/BooksMenu/BooksMenu'
+import React from "react"
+import Header from "./components/Header"
+import Footer from "./components/Footer"
 
 function App() {
 
+
   return (
-    <div className="overflow-x-hidden">
-        <Navbar/>
-        <BooksMenu/>
-    </div>
+   <div>
+      <Header/>
+      <main>
+          <h1>ola mundo</h1>
+      </main>
+      <Footer/>
+      app
+   </div>
   )
 }
 
