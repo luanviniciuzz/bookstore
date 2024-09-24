@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import produtos from '../../produtos'
+import products from '../../produtos'
 import Product from '../components/Product'
 
 function HomeScreen(){
@@ -9,7 +9,7 @@ function HomeScreen(){
        <h1>Latest Products</h1>
           <div>
               <Row>
-                  {produtos.map(p => (
+                  {products.map(p => (
                       <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
                           <Product product={p}/>
                       </Col>
