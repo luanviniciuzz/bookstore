@@ -2,6 +2,7 @@ import React from "react"
 import { Container } from 'react-bootstrap'
 import Header from "./components/Header"
 import Footer from "./components/Footer"
+import HomeScreen from "./srcreens/HomeScreen"
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
       <Header/>
       <main>
         <Container>
-        <h1>ola mundo</h1>
+          <HomeScreen/>
         </Container>
       </main>
       <Footer/>
