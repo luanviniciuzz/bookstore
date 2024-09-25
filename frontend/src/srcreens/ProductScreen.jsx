@@ -1,17 +1,26 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { Row, Col, Image, ListGroup, Button, Card } from 'react-bootstrap';
 import Rating from "../components/Rating";
 import products from "../../produtos";
 import { Link, useParams } from "react-router-dom";
+import axios from 'axios'
+import API from '../services/API'
+
 
 function ProductScreen() {
   const { id } = useParams(); 
-  const product = products?.find((p) => p._id === id); 
+  const [product, setProduct] = useState([])
 
-  if (!product) {
-    return <div>Produto não encontrado</div>; 
-  }
+  useEffect(() => {
 
+    async function fetchProduct(){
+      const{ data } = await API.get(`/api/product/${id}/`)
+      setProduct(data)
+      console.log(match)
+    }
+
+    fetchProduct()
+  },[])
   return (
     <div>
       <Link to="/" className="btn btn-light my-3">Go Back</Link>
