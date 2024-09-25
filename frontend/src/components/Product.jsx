@@ -16,15 +16,23 @@ function Product({ product }){
                  <strong>{product.name}</strong>
               </Card.Title>
           </Link>
+          <Card.Text>
+             autor: {product.author}
+          </Card.Text>
+          <Card.Text>
+              Categoria : {product.category}
+          </Card.Text>
+          <Card.Text>
+              Data de publicação : {product.publicationDate}
+          </Card.Text>
           <Card.Text as="div">
               <div className="my-3">
-                <Rating value={product.rating} text={`${product.numReviews} reviews`} color={"#f39c12"}/>
+                <Rating value={product.rating} text={`${product.numReviews} comentários`} color={"#f39c12"}/>
               </div>
           </Card.Text>
 
           <Card.Text as="h3">
-             ${product.price}
-             
+             R$: {product.price}
           </Card.Text>
         </Card.Body>
     </Card>

@@ -23,7 +23,7 @@ function ProductScreen() {
   },[])
   return (
     <div>
-      <Link to="/" className="btn btn-light my-3">Go Back</Link>
+      <Link to="/" className="btn btn-light my-3">Voltar</Link>
       <Row>
          <Col md={6}>
               <Image src={product.image} fluid/>
@@ -37,16 +37,33 @@ function ProductScreen() {
             </ListGroup.Item>
 
             <ListGroup.Item>
-              <Rating value={product.rating} text={`${product.numReviews} reviews`} color={"#f39c12"}/>
+              <Rating value={product.rating} text={`${product.numReviews} comentários`} color={"#f39c12"}/>
             </ListGroup.Item>
 
             <ListGroup.Item>
-              Price: ${product.price}
+              Preço: ${product.price}
             </ListGroup.Item>
 
             <ListGroup.Item>
-               Description: {product.description}
+               Sinopse: {product.description}
             </ListGroup.Item>
+
+            <ListGroup.Item>
+               Autor: {product.author}
+            </ListGroup.Item>
+
+            <ListGroup.Item>
+               Categoria: {product.category}
+            </ListGroup.Item>
+
+            <ListGroup.Item>
+              Data de publicação : {product.publicationDate}
+            </ListGroup.Item>
+
+            <ListGroup.Item>
+              {product.pages} páginas
+            </ListGroup.Item>
+           
 
           </ListGroup>
          </Col>
@@ -58,24 +75,24 @@ function ProductScreen() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <Row>
-                    <Col>Price:</Col>
+                    <Col>Preço:</Col>
                     <Col>
-                      <strong>${product.price}</strong>
+                      <strong>R${product.price}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
                   <Row>
-                    <Col>Status:</Col>
+                    <Col>Situação:</Col>
                     <Col>
-                      <strong>${product.countInStock > 0 ? "In Stock" : "Out of Stock"}</strong>
+                      <strong>{product.countInStock > 0 ? "Em estoque" : "Fora de estoque"}</strong>
                     </Col>
                   </Row>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                    <Button className="btn-black" disabled={product.countInStock == 0} type="button">Add to Cart</Button>
+                    <Button className="btn-black" disabled={product.countInStock == 0} type="button">Adicionar ao carrinho</Button>
                 </ListGroup.Item>
               </ListGroup>
             </Card>
