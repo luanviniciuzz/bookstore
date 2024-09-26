@@ -1,4 +1,5 @@
-import axios from 'axios'
+import API from '../services/API'
+
 import {
     PRODUCT_LIST_REQUEST,
     PRODUCT_LIST_SUCCESS,
@@ -36,7 +37,7 @@ export const listProducts = (keyword = '') => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_LIST_REQUEST })
 
-        const { data } = await axios.get(`/api/products${keyword}`)
+        const { data } = await API.get(`/api/products${keyword}`)
 
         dispatch({
             type: PRODUCT_LIST_SUCCESS,
@@ -57,8 +58,8 @@ export const listTopProducts = () => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_TOP_REQUEST })
 
-        const { data } = await axios.get(`/api/products/top/`)
-
+        const { data } = await API.get(`/api/products/top/`)
+      
         dispatch({
             type: PRODUCT_TOP_SUCCESS,
             payload: data
@@ -79,7 +80,7 @@ export const listProductDetails = (id) => async (dispatch) => {
     try {
         dispatch({ type: PRODUCT_DETAILS_REQUEST })
 
-        const { data } = await axios.get(`/api/products/${id}`)
+        const { data } = await API.get(`/api/products/${id}`)
 
         dispatch({
             type: PRODUCT_DETAILS_SUCCESS,
@@ -114,7 +115,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.delete(
+        const { data } = await API.delete(
             `/api/products/delete/${id}/`,
             config
         )
@@ -154,7 +155,7 @@ export const createProduct = () => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.post(
+        const { data } = await API.post(
             `/api/products/create/`,
             {},
             config
@@ -194,7 +195,7 @@ export const updateProduct = (product) => async (dispatch, getState) => {
             }
         }
 
-        const { data } = await axios.put(
+        const { data } = await API.put(
             `/api/products/update/${product._id}/`,
             product,
             config
@@ -238,7 +239,7 @@ export const createProductReview = (productId, review) => async (dispatch, getSt
             }
         }
 
-        const { data } = await axios.post(
+        const { data } = await API.post(
             `/api/products/${productId}/reviews/`,
             review,
             config
