@@ -6,7 +6,7 @@ from rest_framework.response import Response
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from base.models import Product, Review
-from base.serializer import ProductSerializer
+from base.serializers import ProductSerializer
 
 from rest_framework import status
 
