@@ -4,8 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
+import { useLocation, useNavigate  } from 'react-router-dom'
+// { match, location, history }
 
-function CartScreen({ match, location, history }) {
+function CartScreen() {
+
+    const navigate = useNavigate()
+    const location = useLocation()    
+
     const productId = useParams()
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     const dispatch = useDispatch()
@@ -25,7 +31,7 @@ function CartScreen({ match, location, history }) {
     }
 
     const checkoutHandler = () => {
-        history.push('/login?redirect=shipping')
+        navigate('/login?redirect=shipping')
     }
 
     return (

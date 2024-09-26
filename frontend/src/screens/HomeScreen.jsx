@@ -9,21 +9,23 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import Paginate from '../components/Paginate'
 import ProductCarousel from '../components/ProductCarousel'
-import { useParams } from 'react-router-dom'
+import { useLocation  } from 'react-router-dom'
 
 function HomeScreen(){
 
-  const history = useParams()
+
+  const location = useLocation()
+
   const dispatch = useDispatch()
   const productList = useSelector(state => state.productList)
   const { error, loading, products, page, pages } = productList
 
-  let keyword = ''
+  let keyword = location.search
 
-  useEffect(() => {
-      dispatch(listProducts(keyword))
+    useEffect(() => {
+        dispatch(listProducts(keyword))
 
-  }, [dispatch])
+    }, [dispatch, keyword])
 
   return (
     <div>
@@ -35,9 +37,9 @@ function HomeScreen(){
                   :
                   <div>
                       <Row>
-                          {products.map(product => (
-                              <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                                  <Product product={product} />
+                          {products.map(p => (
+                              <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
+                                  <Product product={p} />
                               </Col>
                           ))}
                       </Row>
