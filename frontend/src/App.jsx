@@ -28,21 +28,21 @@ function App() {
       <main className="py-3">
         <Container>
           <Routes>
-          <Route path='/' component={HomeScreen} exact />
-          <Route path='/login' component={LoginScreen} />
-          <Route path='/register' component={RegisterScreen} />
-          <Route path='/profile' component={ProfileScreen} />
-          <Route path='/shipping' component={ShippingScreen} />
-          <Route path='/placeorder' component={PlaceOrderScreen} />
-          <Route path='/order/:id' component={OrderScreen} />
-          <Route path='/payment' component={PaymentScreen} />
-          <Route path='/product/:id' component={ProductScreen} />
-          <Route path='/cart/:id?' component={CartScreen} />
-          <Route path='/admin/userlist' component={UserListScreen} />
-          <Route path='/admin/user/:id/edit' component={UserEditScreen} />
-          <Route path='/admin/productlist' component={ProductListScreen} />
-          <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
-          <Route path='/admin/orderlist' component={OrderListScreen} />
+              <Route path='/' Component={HomeScreen} exact />
+              <Route path='/login' Component={LoginScreen} />
+              <Route path='/register' Component={RegisterScreen} />
+              <Route path='/profile' Component={ProfileScreen} />
+              <Route path='/shipping' Component={ShippingScreen} />
+              <Route path='/placeorder' Component={PlaceOrderScreen} />
+              <Route path='/order/:id' Component={OrderScreen} />
+              <Route path='/payment' Component={PaymentScreen} />
+              <Route path='/product/:id' Component={ProductScreen} />
+              <Route path='/cart/:id?' Component={CartScreen} />
+              <Route path='/admin/userlist' Component={UserListScreen} />
+              <Route path='/admin/user/:id/edit' Component={UserEditScreen} />
+              <Route path='/admin/productlist' Component={ProductListScreen} />
+              <Route path='/admin/product/:id/edit' Component={ProductEditScreen} />
+              <Route path='/admin/orderlist' Component={OrderListScreen} />
           </Routes>
         </Container>
       </main>

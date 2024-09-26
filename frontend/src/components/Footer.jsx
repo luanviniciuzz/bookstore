@@ -9,7 +9,7 @@ function Footer() {
     <footer>
       <Container>
         <Row>
-          <Col className="text-center py-3" >Test prático TSMX</Col>
+          <Col className="text-center py-3" >Teste prático TSMX</Col>
         </Row>
       </Container>
     </footer>
