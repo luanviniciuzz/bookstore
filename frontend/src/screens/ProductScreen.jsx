@@ -13,7 +13,7 @@ import { useLocation, useParams, useNavigate  } from 'react-router-dom'
 function ProductScreen() {
 
     const navigate = useNavigate()
-    const {id} = useParams()
+    const { id } = useParams()
     const location = useLocation()
     const [qty, setQty] = useState(1)
     const [rating, setRating] = useState(0)
@@ -45,8 +45,9 @@ function ProductScreen() {
 
     }, [dispatch, id, successProductReview])
 
+
     const addToCartHandler = () => {
-      navigate(`/cart/${id}?qty=${qty}`)
+        navigate(`/cart/${id}?qty=${qty}`)
     }
 
     const submitHandler = (e) => {

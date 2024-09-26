@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import { FaTrash } from "react-icons/fa";
 import Message from '../components/Message'
 import { addToCart, removeFromCart } from '../actions/cartActions'
 import { useLocation, useNavigate  } from 'react-router-dom'
@@ -13,6 +14,7 @@ function CartScreen() {
     const location = useLocation()    
 
     const productId = useParams()
+
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     const dispatch = useDispatch()
 
@@ -21,7 +23,7 @@ function CartScreen() {
 
     useEffect(() => {
         if (productId) {
-            dispatch(addToCart(productId, qty))
+            dispatch(addToCart(productId.id, qty))
         }
     }, [dispatch, productId, qty])
 
@@ -37,15 +39,16 @@ function CartScreen() {
     return (
         <Row>
             <Col md={8}>
-                <h1>Shopping Cart</h1>
+                <h1>Carrinho de compras</h1>
                 {cartItems.length === 0 ? (
                     <Message variant='info'>
-                        Your cart is empty <Link to='/'>Go Back</Link>
+                        Seu carrinho está vazio! <Link to='/'>Go Back</Link>
                     </Message>
                 ) : (
                         <ListGroup variant='flush'>
                             {cartItems.map(item => (
                                 <ListGroup.Item key={item.product}>
+                                     <button onClick={() => console.log(item.product)}>CLICLCSC</button>
                                     <Row>
                                         <Col md={2}>
                                             <Image src={item.image} alt={item.name} fluid rounded />
@@ -82,7 +85,7 @@ function CartScreen() {
                                                 variant='light'
                                                 onClick={() => removeFromCartHandler(item.product)}
                                             >
-                                                <i className='fas fa-trash'></i>
+                                                <FaTrash />
                                             </Button>
                                         </Col>
                                     </Row>

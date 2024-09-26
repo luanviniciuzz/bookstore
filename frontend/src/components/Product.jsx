@@ -19,6 +19,7 @@ function convertDataTime(isoDate){
 
   return (
     <Card className="my-3 p-3 rounded">
+      <button onClick={() => console.log(product)}>CLICK CLICK</button>
         <Link to={`/product/${product._id}`}>
             <Card.Img src={product.image}/>
         </Link>
@@ -27,6 +28,7 @@ function convertDataTime(isoDate){
               <Card.Title as="div">
                  <strong>{product.name}</strong>
               </Card.Title>
+              
           </Link>
           <Card.Text>
              Autor: {product.author}

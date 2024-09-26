@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 function SearchBox() {
     const [keyword, setKeyword] = useState('')
 
-    let history = useHistory()
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const submitHandler = (e) => {
         e.preventDefault()
         if (keyword) {
-            history.push(`/?keyword=${keyword}&page=1`)
+            navigate(`/?keyword=${keyword}&page=1`)
         } else {
-            history.push(history.push(history.location.pathname))
+            navigate(navigate(location.pathname))
         }
     }
     return (
