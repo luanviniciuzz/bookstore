@@ -6,8 +6,12 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { login } from '../actions/userActions'
+import { useLocation, useNavigate  } from 'react-router-dom'
 
-function LoginScreen({ location, history }) {
+function LoginScreen() {
+    const navigate = useNavigate()
+    const location = useLocation()
+
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
@@ -20,9 +24,9 @@ function LoginScreen({ location, history }) {
 
     useEffect(() => {
         if (userInfo) {
-            history.push(redirect)
+            navigate(redirect)
         }
-    }, [history, userInfo, redirect])
+    }, [navigate, userInfo, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -31,16 +35,16 @@ function LoginScreen({ location, history }) {
 
     return (
         <FormContainer>
-            <h1>Sign In</h1>
+            <h1>Acesso à BookStore</h1>
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control
                         type='email'
-                        placeholder='Enter Email'
+                        placeholder='Digite seu email'
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     >
@@ -49,10 +53,10 @@ function LoginScreen({ location, history }) {
 
 
                 <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Senha</Form.Label>
                     <Form.Control
                         type='password'
-                        placeholder='Enter Password'
+                        placeholder='Digite sua senha'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     >
@@ -60,15 +64,15 @@ function LoginScreen({ location, history }) {
                 </Form.Group>
 
                 <Button type='submit' variant='primary'>
-                    Sign In
+                    Entrar
                 </Button>
             </Form>
 
             <Row className='py-3'>
                 <Col>
-                    New Customer? <Link
+                    Novo por aqui? <Link
                         to={redirect ? `/register?redirect=${redirect}` : '/register'}>
-                        Register
+                         Cadastre-se
                         </Link>
                 </Col>
             </Row>

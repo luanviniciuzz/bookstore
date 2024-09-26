@@ -6,8 +6,12 @@ import Loader from '../components/Loader'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
 import { register } from '../actions/userActions'
+import { useNavigate, useLocation } from 'react-router-dom'
 
-function RegisterScreen({ location, history }) {
+function RegisterScreen() {
+
+    const navigate = useNavigate()
+    const location = useLocation()
 
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -24,9 +28,9 @@ function RegisterScreen({ location, history }) {
 
     useEffect(() => {
         if (userInfo) {
-            history.push(redirect)
+            navigate(redirect)
         }
-    }, [history, userInfo, redirect])
+    }, [navigate, userInfo, redirect])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -41,14 +45,14 @@ function RegisterScreen({ location, history }) {
 
     return (
         <FormContainer>
-            <h1>Sign In</h1>
+            <h1>Acesso à BookStore</h1>
             {message && <Message variant='danger'>{message}</Message>}
             {error && <Message variant='danger'>{error}</Message>}
             {loading && <Loader />}
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId='name'>
-                    <Form.Label>Name</Form.Label>
+                    <Form.Label>Nome</Form.Label>
                     <Form.Control
                         required
                         type='name'
@@ -60,7 +64,7 @@ function RegisterScreen({ location, history }) {
                 </Form.Group>
 
                 <Form.Group controlId='email'>
-                    <Form.Label>Email Address</Form.Label>
+                    <Form.Label>Email</Form.Label>
                     <Form.Control
                         required
                         type='email'
@@ -72,7 +76,7 @@ function RegisterScreen({ location, history }) {
                 </Form.Group>
 
                 <Form.Group controlId='password'>
-                    <Form.Label>Password</Form.Label>
+                    <Form.Label>Senha</Form.Label>
                     <Form.Control
                         required
                         type='password'
@@ -84,7 +88,7 @@ function RegisterScreen({ location, history }) {
                 </Form.Group>
 
                 <Form.Group controlId='passwordConfirm'>
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label>Comfirme sua senha</Form.Label>
                     <Form.Control
                         required
                         type='password'
@@ -96,16 +100,16 @@ function RegisterScreen({ location, history }) {
                 </Form.Group>
 
                 <Button type='submit' variant='primary'>
-                    Register
+                    Cadastre-se
                 </Button>
 
             </Form>
 
             <Row className='py-3'>
                 <Col>
-                    Have an Account? <Link
+                    Já possui uma conta? <Link
                         to={redirect ? `/login?redirect=${redirect}` : '/login'}>
-                        Sign In
+                        Entrar
                         </Link>
                 </Col>
             </Row>
