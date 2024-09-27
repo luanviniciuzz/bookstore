@@ -103,7 +103,7 @@ Antes de começar, você precisa ter instalado em sua máquina:
     python manage.py runserver
     ```
 
-    Sua API estará disponível em `http://127.0.0.1:8000/`.
+    Sua API estará disponível em `http://127.0.0.1:8000/api/products/`.
 #### Logando como ADM
 Apos restaurar o banco de dados acesse:
 
