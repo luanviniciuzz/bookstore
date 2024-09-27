@@ -109,9 +109,9 @@ Apos restaurar o banco de dados acesse:
 
 `http://127.0.0.1:8000/admin`
 
-usuario: luan
-email: luan@email.com
-senha: 123
+- usuario: luan
+- email: luan@email.com
+- senha: 123
 
 
 ### Projeto React.js
