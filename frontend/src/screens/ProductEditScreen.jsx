@@ -18,8 +18,10 @@ function ProductEditScreen() {
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
     const [pages, setPages] = useState(0)
+    const [author, setAuthor] = useState('')
     const [image, setImage] = useState('')
     const [publisher, setPublisher] = useState('')
+    const [publicationDate, setPublicationDate] = useState('')
     const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
@@ -34,10 +36,6 @@ function ProductEditScreen() {
     const { error: errorUpdate, loading: loadingUpdate, success: successUpdate } = productUpdate
 
     useEffect(() => {
-        console.log("AAAAA", productId.id)
-    },[])
-
-    useEffect(() => {
        
 
         if (successUpdate) {
@@ -50,8 +48,9 @@ function ProductEditScreen() {
                 setName(product.name)
                 setPrice(product.price)
                 setPages(product.pages)
-                setImage(product.image)
+                setAuthor(product.author)
                 setPublisher(product.publisher)
+                setPublicationDate(product.publicationDate)
                 setCategory(product.category)
                 setCountInStock(product.countInStock)
                 setDescription(product.description)
@@ -68,9 +67,11 @@ function ProductEditScreen() {
         dispatch(updateProduct({
             _id: productId.id,
             name,
+            author,
             price,
-            image,
+            pages,
             publisher,
+            publicationDate,
             category,
             countInStock,
             description
@@ -111,7 +112,7 @@ function ProductEditScreen() {
             </Link>
 
             <FormContainer>
-                <h1>Edit Product</h1>
+                <h1>Editar produto</h1>
                 {loadingUpdate && <Loader />}
                 {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
 
@@ -120,19 +121,31 @@ function ProductEditScreen() {
                         <Form onSubmit={submitHandler}>
 
                             <Form.Group controlId='name'>
-                                <Form.Label>Name</Form.Label>
+                                <Form.Label>Nome</Form.Label>
                                 <Form.Control
 
                                     type='name'
-                                    placeholder='Enter name'
+                                    placeholder=''
                                     value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>
 
+                            <Form.Group controlId='author'>
+                                <Form.Label>Autor</Form.Label>
+                                <Form.Control
+
+                                    type='author'
+                                    placeholder=''
+                                    value={author}
+                                    onChange={(e) => setAuthor(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+
                             <Form.Group controlId='price'>
-                                <Form.Label>Price</Form.Label>
+                                <Form.Label>Preço</Form.Label>
                                 <Form.Control
 
                                     type='number'
@@ -144,48 +157,60 @@ function ProductEditScreen() {
                             </Form.Group>
 
 
-                            <Form.Group controlId='image'>
+                            {/* <Form.Group controlId='image'>
                                 <Form.Label>Image</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='Enter image'
+                                    placeholder=''
                                     value={image}
                                     onChange={(e) => setImage(e.target.value)}
                                 >
                                 </Form.Control>
 
-                                {/* <Form.File
+                                <Form.File
                                     id='image-file'
                                     label='Choose File'
                                     custom
                                     onChange={uploadFileHandler}
                                 >
 
-                                </Form.File> */}
+                                </Form.File>
                                 {uploading && <Loader />}
 
-                            </Form.Group>
+                            </Form.Group> */}
 
 
                             <Form.Group controlId='publisher'>
-                                <Form.Label>publisher</Form.Label>
+                                <Form.Label>Editora</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='Enter publisher'
+                                    placeholder=''
                                     value={publisher}
                                     onChange={(e) => setPublisher(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>
 
-                            <Form.Group controlId='pages'>
-                                <Form.Label>pages</Form.Label>
+                            <Form.Group controlId='publicationDate'>
+                                <Form.Label>Data de publicação</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='Enter pages'
+                                    placeholder=''
+                                    value={publicationDate}
+                                    onChange={(e) => setPublicationDate(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId='pages'>
+                                <Form.Label>Páginas</Form.Label>
+                                <Form.Control
+
+                                    type='number'
+                                    placeholder=''
                                     value={pages}
                                     onChange={(e) => setPages(e.target.value)}
                                 >
@@ -193,11 +218,11 @@ function ProductEditScreen() {
                             </Form.Group>
 
                             <Form.Group controlId='countinstock'>
-                                <Form.Label>Stock</Form.Label>
+                                <Form.Label>Quantidade em estoque</Form.Label>
                                 <Form.Control
 
                                     type='number'
-                                    placeholder='Enter stock'
+                                    placeholder=''
                                     value={countInStock}
                                     onChange={(e) => setCountInStock(e.target.value)}
                                 >
@@ -205,11 +230,11 @@ function ProductEditScreen() {
                             </Form.Group>
 
                             <Form.Group controlId='category'>
-                                <Form.Label>Category</Form.Label>
+                                <Form.Label>Categoria</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='Enter category'
+                                    placeholder=''
                                     value={category}
                                     onChange={(e) => setCategory(e.target.value)}
                                 >
@@ -217,11 +242,11 @@ function ProductEditScreen() {
                             </Form.Group>
 
                             <Form.Group controlId='description'>
-                                <Form.Label>Description</Form.Label>
+                                <Form.Label>Descrição</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='Enter description'
+                                    placeholder=''
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                 >
@@ -231,7 +256,7 @@ function ProductEditScreen() {
 
                             <Button type='submit' variant='primary'>
                                 Update
-                        </Button>
+                            </Button>
 
                         </Form>
                     )}

@@ -7,7 +7,7 @@ import CheckoutSteps from '../components/CheckoutSteps'
 import { savePaymentMethod } from '../actions/cartActions'
 import { useNavigate } from 'react-router-dom'
 
-function PaymentScreen({ history }) {
+function PaymentScreen() {
 
     const navigate = useNavigate()
 

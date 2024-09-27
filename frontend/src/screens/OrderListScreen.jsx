@@ -32,7 +32,7 @@ function OrderListScreen() {
 
     return (
         <div>
-            <h1>Orders</h1>
+            <h1>Pedidos</h1>
             {loading
                 ? (<Loader />)
                 : error
@@ -42,11 +42,11 @@ function OrderListScreen() {
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>USER</th>
-                                    <th>DATE</th>
+                                    <th>USUÁRIO</th>
+                                    <th>DATA</th>
                                     <th>Total</th>
-                                    <th>PAID</th>
-                                    <th>DELIVERED</th>
+                                    <th>PAGO</th>
+                                    <th>ENTREGA</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -76,7 +76,7 @@ function OrderListScreen() {
                                         <td>
                                             <LinkContainer to={`/order/${order._id}`}>
                                                 <Button variant='light' className='btn-sm'>
-                                                    Details
+                                                    Detalhes
                                                 </Button>
                                             </LinkContainer>
 

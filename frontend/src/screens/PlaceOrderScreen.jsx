@@ -55,10 +55,10 @@ function PlaceOrderScreen() {
                 <Col md={8}>
                     <ListGroup variant='flush'>
                         <ListGroup.Item>
-                            <h2>Shipping</h2>
+                            <h2>Envio</h2>
 
                             <p>
-                                <strong>Shipping: </strong>
+                                <strong>Envio: </strong>
                                 {cart.shippingAddress.address},  {cart.shippingAddress.city}
                                 {'  '}
                                 {cart.shippingAddress.postalCode},
@@ -68,17 +68,17 @@ function PlaceOrderScreen() {
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Payment Method</h2>
+                            <h2>Método de pagamento</h2>
                             <p>
-                                <strong>Method: </strong>
+                                <strong>Método: </strong>
                                 {cart.paymentMethod}
                             </p>
                         </ListGroup.Item>
 
                         <ListGroup.Item>
-                            <h2>Order Items</h2>
+                            <h2>Itens pedidos</h2>
                             {cart.cartItems.length === 0 ? <Message variant='info'>
-                                Your cart is empty
+                                Carrinho vazio
                             </Message> : (
                                     <ListGroup variant='flush'>
                                         {cart.cartItems.map((item, index) => (
@@ -110,34 +110,34 @@ function PlaceOrderScreen() {
                     <Card>
                         <ListGroup variant='flush'>
                             <ListGroup.Item>
-                                <h2>Order Summary</h2>
+                                <h2>Resumo do pedido</h2>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Items:</Col>
-                                    <Col>${cart.itemsPrice}</Col>
+                                    <Col>Itens:</Col>
+                                    <Col>R${cart.itemsPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Shipping:</Col>
-                                    <Col>${cart.shippingPrice}</Col>
+                                    <Col>Envio:</Col>
+                                    <Col>R${cart.shippingPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
-                                    <Col>Tax:</Col>
-                                    <Col>${cart.taxPrice}</Col>
+                                    <Col>Taxa:</Col>
+                                    <Col>R${cart.taxPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
                             <ListGroup.Item>
                                 <Row>
                                     <Col>Total:</Col>
-                                    <Col>${cart.totalPrice}</Col>
+                                    <Col>R${cart.totalPrice}</Col>
                                 </Row>
                             </ListGroup.Item>
 
@@ -153,7 +153,7 @@ function PlaceOrderScreen() {
                                     disabled={cart.cartItems === 0}
                                     onClick={placeOrder}
                                 >
-                                    Place Order
+                                    Fazer pedido
                                 </Button>
                             </ListGroup.Item>
 

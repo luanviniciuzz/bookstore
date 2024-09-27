@@ -28,15 +28,15 @@ function ShippingScreen() {
     return (
         <FormContainer>
             <CheckoutSteps step1 step2 />
-            <h1>Shipping</h1>
+            <h1>Envio</h1>
             <Form onSubmit={submitHandler}>
 
                 <Form.Group controlId='address'>
-                    <Form.Label>Address</Form.Label>
+                    <Form.Label>Endereço</Form.Label>
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter address'
+                        placeholder='Digite seu endereço'
                         value={address ? address : ''}
                         onChange={(e) => setAddress(e.target.value)}
                     >
@@ -44,11 +44,11 @@ function ShippingScreen() {
                 </Form.Group>
 
                 <Form.Group controlId='city'>
-                    <Form.Label>City</Form.Label>
+                    <Form.Label>Cidade</Form.Label>
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter city'
+                        placeholder='Digite sua cidade'
                         value={city ? city : ''}
                         onChange={(e) => setCity(e.target.value)}
                     >
@@ -56,11 +56,11 @@ function ShippingScreen() {
                 </Form.Group>
 
                 <Form.Group controlId='postalCode'>
-                    <Form.Label>Postal Code</Form.Label>
+                    <Form.Label>CEP</Form.Label>
                     <Form.Control
                         required
                         type='text'
-                        placeholder='Enter postal code'
+                        placeholder='xxxxx-xxx'
                         value={postalCode ? postalCode : ''}
                         onChange={(e) => setPostalCode(e.target.value)}
                     >
@@ -68,7 +68,7 @@ function ShippingScreen() {
                 </Form.Group>
 
                 <Form.Group controlId='country'>
-                    <Form.Label>Country</Form.Label>
+                    <Form.Label>País</Form.Label>
                     <Form.Control
                         required
                         type='text'
@@ -80,7 +80,7 @@ function ShippingScreen() {
                 </Form.Group>
 
                 <Button type='submit' variant='primary'>
-                    Continue
+                    Continuar
                 </Button>
             </Form>
         </FormContainer>

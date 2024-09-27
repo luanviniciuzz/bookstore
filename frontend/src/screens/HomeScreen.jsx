@@ -29,23 +29,21 @@ function HomeScreen(){
 
   return (
     <div>
-      {!keyword && <ProductCarousel />}
-
-          <h1>Latest Products</h1>
-          {loading ? <Loader />
-              : error ? <Message variant='danger'>{error}</Message>
-                  :
-                  <div>
-                      <Row>
-                          {products.map(p => (
-                              <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
-                                  <Product product={p} />
-                              </Col>
-                          ))}
-                      </Row>
-                      <Paginate page={page} pages={pages} keyword={keyword} />
-                  </div>
-          }"
+        <h1>Livros mais recentes</h1>
+        {loading ? <Loader />
+            : error ? <Message variant='danger'>{error}</Message>
+                :
+                <div>
+                    <Row>
+                        {products.map(p => (
+                            <Col key={p._id} sm={12} md={6} lg={4} xl={3}>
+                                <Product product={p} />
+                            </Col>
+                        ))}
+                    </Row>
+                    <Paginate page={page} pages={pages} keyword={keyword} />
+                </div>
+        }"
     </div>
   )
 }
