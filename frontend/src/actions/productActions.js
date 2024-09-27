@@ -139,7 +139,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
 
 export const createProduct = () => async (dispatch, getState) => {
-    console.log("dsasdasd", dispatch, getState)
     try {
         dispatch({
             type: PRODUCT_CREATE_REQUEST
