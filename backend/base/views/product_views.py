@@ -60,14 +60,14 @@ def createProduct(request):
 
     product = Product.objects.create(
         user=user,
-        name='Sample Name',
+        name='',
         author='',
         publicationDate='',
         pages=0,
         price=0,
-        publisher='Sample publisher',
+        publisher='',
         countInStock=0,
-        category='Sample Category',
+        category='',
         description=''
     )
 
