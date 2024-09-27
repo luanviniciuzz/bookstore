@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
@@ -12,7 +12,7 @@ function OrderScreen() {
 
     const location = useLocation()
     const navigate = useNavigate()
-    const orderId = location.params.id
+    const orderId = useParams()
     const dispatch = useDispatch()
 
 
@@ -35,6 +35,7 @@ function OrderScreen() {
         order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     }
 
+    useEffect(() => {console.log("asasdasda",orderId.id)},[])
 
     const addPayPalScript = () => {
         const script = document.createElement('script')
@@ -53,11 +54,11 @@ function OrderScreen() {
             navigate('/login')
         }
 
-        if (!order || successPay || order._id !== Number(orderId) || successDeliver) {
+        if (!order || successPay || order._id !== Number(orderId.id) || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
             dispatch({ type: ORDER_DELIVER_RESET })
 
-            dispatch(getOrderDetails(orderId))
+            dispatch(getOrderDetails(orderId.id))
         } else if (!order.isPaid) {
             if (!window.paypal) {
                 addPayPalScript()
@@ -69,7 +70,7 @@ function OrderScreen() {
 
 
     const successPaymentHandler = (paymentResult) => {
-        dispatch(payOrder(orderId, paymentResult))
+        dispatch(payOrder(orderId.id, paymentResult))
     }
 
     const deliverHandler = () => {
@@ -130,7 +131,7 @@ function OrderScreen() {
                                                     <ListGroup.Item key={index}>
                                                         <Row>
                                                             <Col md={1}>
-                                                                <Image src={item.image} alt={item.name} fluid rounded />
+                                                                {/* <Image src={item.image} alt={item.name} fluid rounded /> */}
                                                             </Col>
 
                                                             <Col>
@@ -202,7 +203,7 @@ function OrderScreen() {
                                                         type='button'
                                                         className='btn btn-block'
                                                     >
-                                                        PAY PAL LIB
+                                                        Realizar pagamento
                                                     </Button>
                                                 )}
                                         </ListGroup.Item>

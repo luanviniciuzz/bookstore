@@ -15,6 +15,9 @@ function CartScreen() {
 
     const productId = useParams()
 
+    const userLogin = useSelector(state => state.userLogin)
+    const { userInfo } = userLogin
+
     const qty = location.search ? Number(location.search.split('=')[1]) : 1
     const dispatch = useDispatch()
 
@@ -33,7 +36,11 @@ function CartScreen() {
     }
 
     const checkoutHandler = () => {
-        navigate('/login?redirect=shipping')
+        if(userInfo){
+            navigate('/shipping')
+        }else{
+            navigate('/login')
+        }
     }
 
     return (
@@ -110,7 +117,7 @@ function CartScreen() {
                             disabled={cartItems.length === 0}
                             onClick={checkoutHandler}
                         >
-                            Proceed To Checkout
+                            Checar pedido(s)
                         </Button>
                     </ListGroup.Item>
 
