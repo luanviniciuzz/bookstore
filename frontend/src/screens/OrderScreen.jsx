@@ -35,8 +35,6 @@ function OrderScreen() {
         order.itemsPrice = order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
     }
 
-    useEffect(() => {console.log("asasdasda",orderId.id)},[])
-
     const addPayPalScript = () => {
         const script = document.createElement('script')
         script.type = 'text/javascript'
