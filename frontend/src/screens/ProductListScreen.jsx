@@ -8,6 +8,7 @@ import Paginate from '../components/Paginate'
 import { listProducts, deleteProduct, createProduct } from '../actions/productActions'
 import { PRODUCT_CREATE_RESET } from '../constants/productConstants'
 import { useNavigate, useLocation } from 'react-router-dom'
+import { FaEdit, FaTrash } from "react-icons/fa";
 
 function ProductListScreen() {
 
@@ -66,7 +67,7 @@ function ProductListScreen() {
 
                 <Col className='text-right'>
                     <Button className='my-3' onClick={createProductHandler}>
-                        <i className='fas fa-plus'></i> Create Product
+                         Adicionar produto
                     </Button>
                 </Col>
             </Row>
@@ -88,10 +89,10 @@ function ProductListScreen() {
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>NAME</th>
-                                        <th>PRICE</th>
-                                        <th>CATEGORY</th>
-                                        <th>BRAND</th>
+                                        <th>NOME</th>
+                                        <th>PREÇO</th>
+                                        <th>CATEGORIA</th>
+                                        <th>EDITORA</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -103,17 +104,17 @@ function ProductListScreen() {
                                             <td>{product.name}</td>
                                             <td>${product.price}</td>
                                             <td>{product.category}</td>
-                                            <td>{product.brand}</td>
+                                            <td>{product.publisher}</td>
 
                                             <td>
                                                 <LinkContainer to={`/admin/product/${product._id}/edit`}>
                                                     <Button variant='light' className='btn-sm'>
-                                                        <i className='fas fa-edit'></i>
+                                                        <FaEdit />
                                                     </Button>
                                                 </LinkContainer>
 
                                                 <Button variant='danger' className='btn-sm' onClick={() => deleteHandler(product._id)}>
-                                                    <i className='fas fa-trash'></i>
+                                                    <FaTrash />
                                                 </Button>
                                             </td>
                                         </tr>

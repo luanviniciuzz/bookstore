@@ -61,8 +61,11 @@ def createProduct(request):
     product = Product.objects.create(
         user=user,
         name='Sample Name',
+        author='',
+        publicationDate='',
+        pages=0,
         price=0,
-        brand='Sample Brand',
+        publisher='Sample publisher',
         countInStock=0,
         category='Sample Category',
         description=''
@@ -80,10 +83,13 @@ def updateProduct(request, pk):
 
     product.name = data['name']
     product.price = data['price']
-    product.brand = data['brand']
+    product.publisher = data['publisher']
     product.countInStock = data['countInStock']
     product.category = data['category']
     product.description = data['description']
+    product.author = data['author']
+    product.pages = data['pages']
+    product.publicationDate = data['publicationDate']
 
     product.save()
 

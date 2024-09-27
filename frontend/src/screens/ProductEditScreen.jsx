@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../components/Loader'
@@ -10,14 +10,16 @@ import { listProductDetails, updateProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 
-function ProductEditScreen({ match, history }) {
+function ProductEditScreen() {
 
-    const productId = match.params.id
+    const navigate = useNavigate()
+    const productId = useParams()
 
     const [name, setName] = useState('')
     const [price, setPrice] = useState(0)
+    const [pages, setPages] = useState(0)
     const [image, setImage] = useState('')
-    const [brand, setBrand] = useState('')
+    const [publisher, setPublisher] = useState('')
     const [category, setCategory] = useState('')
     const [countInStock, setCountInStock] = useState(0)
     const [description, setDescription] = useState('')
@@ -31,20 +33,25 @@ function ProductEditScreen({ match, history }) {
     const productUpdate = useSelector(state => state.productUpdate)
     const { error: errorUpdate, loading: loadingUpdate, success: successUpdate } = productUpdate
 
+    useEffect(() => {
+        console.log("AAAAA", productId.id)
+    },[])
 
     useEffect(() => {
+       
 
         if (successUpdate) {
             dispatch({ type: PRODUCT_UPDATE_RESET })
-            history.push('/admin/productlist')
+            navigate('/admin/productlist')
         } else {
-            if (!product.name || product._id !== Number(productId)) {
-                dispatch(listProductDetails(productId))
+            if (!product.name || product._id !== Number(productId.id)) {
+                dispatch(listProductDetails(productId.id))
             } else {
                 setName(product.name)
                 setPrice(product.price)
+                setPages(product.pages)
                 setImage(product.image)
-                setBrand(product.brand)
+                setPublisher(product.publisher)
                 setCategory(product.category)
                 setCountInStock(product.countInStock)
                 setDescription(product.description)
@@ -54,48 +61,48 @@ function ProductEditScreen({ match, history }) {
 
 
 
-    }, [dispatch, product, productId, history, successUpdate])
+    }, [dispatch, product, productId, navigate, successUpdate])
 
     const submitHandler = (e) => {
         e.preventDefault()
         dispatch(updateProduct({
-            _id: productId,
+            _id: productId.id,
             name,
             price,
             image,
-            brand,
+            publisher,
             category,
             countInStock,
             description
         }))
     }
 
-    const uploadFileHandler = async (e) => {
-        const file = e.target.files[0]
-        const formData = new FormData()
+    // const uploadFileHandler = async (e) => {
+    //     const file = e.target.files[0]
+    //     const formData = new FormData()
 
-        formData.append('image', file)
-        formData.append('product_id', productId)
+    //     formData.append('image', file)
+    //     formData.append('product_id', productId)
 
-        setUploading(true)
+    //     setUploading(true)
 
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            }
+    //     try {
+    //         const config = {
+    //             headers: {
+    //                 'Content-Type': 'multipart/form-data'
+    //             }
+    //         }
 
-            const { data } = await axios.post('/api/products/upload/', formData, config)
+    //         const { data } = await axios.post('/api/products/upload/', formData, config)
 
 
-            setImage(data)
-            setUploading(false)
+    //         setImage(data)
+    //         setUploading(false)
 
-        } catch (error) {
-            setUploading(false)
-        }
-    }
+    //     } catch (error) {
+    //         setUploading(false)
+    //     }
+    // }
 
     return (
         <div>
@@ -148,27 +155,39 @@ function ProductEditScreen({ match, history }) {
                                 >
                                 </Form.Control>
 
-                                <Form.File
+                                {/* <Form.File
                                     id='image-file'
                                     label='Choose File'
                                     custom
                                     onChange={uploadFileHandler}
                                 >
 
-                                </Form.File>
+                                </Form.File> */}
                                 {uploading && <Loader />}
 
                             </Form.Group>
 
 
-                            <Form.Group controlId='brand'>
-                                <Form.Label>Brand</Form.Label>
+                            <Form.Group controlId='publisher'>
+                                <Form.Label>publisher</Form.Label>
                                 <Form.Control
 
                                     type='text'
-                                    placeholder='Enter brand'
-                                    value={brand}
-                                    onChange={(e) => setBrand(e.target.value)}
+                                    placeholder='Enter publisher'
+                                    value={publisher}
+                                    onChange={(e) => setPublisher(e.target.value)}
+                                >
+                                </Form.Control>
+                            </Form.Group>
+
+                            <Form.Group controlId='pages'>
+                                <Form.Label>pages</Form.Label>
+                                <Form.Control
+
+                                    type='text'
+                                    placeholder='Enter pages'
+                                    value={pages}
+                                    onChange={(e) => setPages(e.target.value)}
                                 >
                                 </Form.Control>
                             </Form.Group>
