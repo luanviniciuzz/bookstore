@@ -5,10 +5,10 @@ Explicação de como foi projetado:
 FRONTEND ( REACT + REDUX) ----> GET /api/products ----> BACKEND ( API REST - DJANGO + POSTGRESQL)
 
 ROTAS:
-GET: /api/products
-POST: /api/products/create
-PUT: /api/products/update
-DELETE: /api/products/delete
+- GET: /api/products
+- POST: /api/products/create
+- PUT: /api/products/update
+- DELETE: /api/products/delete
 
 ##### O projeto possui:
 - Catalogo de Livros  com descrição e preço.
