@@ -20,13 +20,13 @@ function HomeScreen(){
   const productList = useSelector(state => state.productList)
   const { error, loading, products, page, pages } = productList
 
+  console.log(productList)
   let keyword = location.search
-
     useEffect(() => {
+
         dispatch(listProducts(keyword))
 
     }, [dispatch, keyword])
-
   return (
     <div>
         <h1>Livros mais recentes</h1>
@@ -41,7 +41,7 @@ function HomeScreen(){
                             </Col>
                         ))}
                     </Row>
-                    <Paginate page={page} pages={pages} keyword={keyword} />
+                    {/* <Paginate page={page} pages={pages} keyword={keyword} /> */}
                 </div>
         }"
     </div>
